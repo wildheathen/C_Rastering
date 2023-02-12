@@ -4,6 +4,7 @@
 #include "screen.h"
 #include "line-raster.h"
 #include "vector.h"
+#include "triangle-raster.h"
 
 
 scene_t* scene_create(int screen_width, int screen_height, SDL_Renderer* r) {
@@ -34,11 +35,14 @@ void scene_update(scene_t* s, float delta_time) {
     dda_line_raster(s->screen, 320, 240, 400, 460, red); //right
     dda_line_raster(s->screen, 240, 460, 400, 460, red); //base
 
-    vector2_t p1 = {320, 240};
-    vector2_t p2 = {240, 460};
-    vector2_t p3 = {400, 460};
+    // vector2_t p1 = {320, 240};
+    // vector2_t p2 = {240, 460};
+    // vector2_t p3 = {400, 460};
+
+    //vector3_t wp1 = { 0.f, 0.f, }
+    
     color_t green = {0, 255, 0, 255};
-    bbox_trinage_raster(s->screen, p1, p2, p3, green);
+    bbox_trinagle_raster(s->screen, p1, p2, p3, green);
 
     screen_blit(s->screen);
 }
