@@ -4,6 +4,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rastering", "Rastering\Rast
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rastering_Test", "..\..\Documents\AIV_3\C_Rastering\Rastering_Test\Rastering_Test.vcxproj", "{63F72E37-D843-41C2-B62C-18D9AC9F73C8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rastering_Test", "Rastering_Test\Rastering_Test.vcxproj", "{63F72E37-D843-41C2-B62C-18D9AC9F73C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
