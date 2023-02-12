@@ -1,7 +1,7 @@
 #include "scene.h"
 #include "SDL.h"
 #include <stdlib.h>
-
+#include "screen.h"
 
 
 void dda_line_raster(screen_t* screen, int x1, int y1, int x2, int y2, color_t color)
@@ -19,13 +19,10 @@ void dda_line_raster(screen_t* screen, int x1, int y1, int x2, int y2, color_t c
     float x = x1;
     float y = y1;
 
-    SDL_SetRenderDrawColor(screen->renderer,color.r, color.g, color.g, color.a);
+    
     for (int i = 0; i <= steps; i++)
     {
-        if(x < 0 || x >= screen->width) continue;
-        if(y < 0 || y >= screen->height) continue;
-        
-        SDL_RenderDrawPoint(screen->renderer, x,y);
+        screen_put_pixel(screen, x, y, color);
         x += step_x;
         y += step_y;
     }
@@ -34,11 +31,7 @@ void dda_line_raster(screen_t* screen, int x1, int y1, int x2, int y2, color_t c
 scene_t* scene_create(int screen_width, int screen_height, SDL_Renderer* r)
 {
     scene_t* scene = (scene_t*)malloc(sizeof(scene_t));
-    scene->screen  = (screen_t*)malloc(sizeof(screen_t));
-    scene->screen->width = screen_width;
-    scene->screen->height = screen_height;
-    scene->screen->renderer = r;
-    
+    scene->screen = screen_new(screen_width, screen_height, r);
     return scene;
 }
 
@@ -46,16 +39,26 @@ void scene_update(scene_t* s, float delta_time)
 {
     color_t red = {255,0,0,255};
 
-    int x1 = 50;
-    int y1 = 50;
-    int x2 = 200;
-    int y2 = 250;
+    static float x1 = 50;
+    static float y1 = 50;
+    static float x2 = 200;
+    static float y2 = 250;
 
-    dda_line_raster(s->screen, x1, y1, x2, y2, red);
+    dda_line_raster(s->screen, (int)x1, (int)y1, (int)x2, (int)y2, red);
+    //dda_line_raster(s->screen, x1 + 10, y1, x2 + 10, y2, red);
+    float speed = 1;
+    
+    x1 += speed * delta_time;
+    x2 += speed * delta_time;
+
+    vector2_t = () 
+    bbox_trinagle_raster(s->screen, )
+
+    screen_blit(s->screen);
 }
 
 void scene_destroy(scene_t* s)
 {
-    free(s->screen);
+    screen_free(s->screen);
     free(s);
 }
